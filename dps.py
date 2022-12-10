@@ -1,23 +1,21 @@
-
 from uuid import uuid4
 import requests
 import telebot,glob
-from redis import Redis
 from telebot import types
-db  = Redis(host="localhost",port=6379)
-bot = telebot.TeleBot("5438908008:AAE215jC_Lk1zTOkIHQ9TDqhlCf9-0cwgbo",num_threads=int(210000))
+bot = telebot.TeleBot("5663341301:AAFnkxqS_gz4uVW_CwYzG0MqoC_zPSqhBJo")
 from telebot.types import InputMediaPhoto
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
-    ch = "TextToImageUpdates"
-    r = requests.get(f"https://api.telegram.org/bot5438908008:AAE215jC_Lk1zTOkIHQ9TDqhlCf9-0cwgbo/getchatmember?chat_id=@{ch}&user_id={message.from_user.id}").text
+    ch = "c_p_8"
+    r = requests.get(f"https://api.telegram.org/bot5732702880:AAH4Q5sPewhEkZIuFeQlUR7GvAkBvM8KrvI/getchatmember?chat_id=@{ch}&user_id={message.from_user.id}").text
     if "left" not in r:
-        db.set(f"member-{message.from_user.id}",f"ok")
         key = types.InlineKeyboardMarkup()
         key.row_width =1
         btn1 = types.InlineKeyboardButton(text=f"- Text To Image Updates .",url="https://t.me/texttoimagerobot")
         key.add(btn1)
-        bot.reply_to(message,f"<strong>- اهلا ...\n- يمكنك صنع 9 صور حسب وصفك لها!\n- قم بأرسال هكذا :\n- /make sun\n- استبدل sun بوصفك للشيء\n- Made With ❤️ By : @trakoss - @TextToImageRobot</strong>",parse_mode="html",reply_markup=key)
+        bot.reply_to(message,f"<strong>- اهلا ...\n- يمكنك صنع 9 صور حسب وصفك لها!\n- قم بأرسال هكذا :\n- /make sun\n- استبدل sun بوصفك للشيء\n- Made With ❤️ By : @k_8_u - @c_p_8</strong>",parse_mode="html",reply_markup=key)
     else:
         bot.reply_to(message,f"Sorry, Subscribe Here : @{ch} To Use Bot\nThen Send /start .")
 @bot.message_handler(func= lambda m:True)
@@ -54,4 +52,3 @@ def get(message):
     except:
         pass
 bot.infinity_polling()
-        
